@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="java/jquery-3.6.0.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/css.css">
+	<link rel="stylesheet" type="text/css" href="css/all.css">
+	<title>voteme</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('.load').load('checklogin.php');
+            })
+        </script>
+        <div class="load"></div>
+	<main>
+<div class="forregister">
+
+             <script type="text/javascript">
+                $(document).ready(function () {
+                $('.reg').on('submit',function (para) {
+                    para.preventDefault();
+                    $.ajax({
+                url:"processreg.php",
+                 type:"post",
+                 data:new FormData(this),
+                 contentType:false,
+                 cache:false,
+                 processData:false,
+                 beforeSend:function(){
+                  $('.showxx').html("wait");
+                 },
+                 success:function(para2){
+                    $('.showxx').html(para2);
+                 },
+                 error:function(){
+                    alert('error typing to processData');
+                 }
+
+                    })
+                });
+                })
+            </script>
+    <form class="reg" action="processreg.php" method="post">
+        <div class="showxx"></div>
+        <input type="text" name="email" placeholder="email">
+        <input type="number" name="nin" placeholder="NIN">
+        <input type="password" name="password" placeholder="password">
+        <input type="password" name="cpassword" placeholder="confirmpassword">
+         <input type="submit" name="reg" value="submit" style="width:60%; background:lightseagreen; font-family: inter; color: white;">
+         <span class="showlog">alrea have an account</span>
+    </form>
+
+
+             <script type="text/javascript">
+                $(document).ready(function () {
+                $('.login').on('submit',function (para) {
+                    para.preventDefault();
+                    $.ajax({
+                url:"login.php",
+                 type:"post",
+                 data:new FormData(this),
+                 contentType:false,
+                 cache:false,
+                 processData:false,
+                 beforeSend:function(){
+                  $('.showl').html("wait");
+                 },
+                 success:function(para2){
+                    $('.showl').html(para2);
+                 },
+                 error:function(){
+                    alert('error typing to processData');
+                 }
+
+                    })
+                });
+                })
+            </script>
+    <form class="login" action="login.php" method="post">
+        <div class="showl"></div>
+           <input type="text" name="email" placeholder="email">
+            <input type="password" name="password" placeholder="password">
+              <input type="submit" name="reg" value="submit" style="width:60%; background:lightseagreen; font-family: inter; color: white;">
+                  <span class="showreg"> have an account</span>
+    </form>
+</div>
+<!---http://voteme.epizy.com-->
+<!----------------------------------------------------------------admin------------------------------------------------->
+<div class="admin">
+    <section class="se1">
+        <i class="fa fa-bars showsdminsidediv"></i>
+    </section>
+    <section class="se2">
+        <div class="adminpost">
+                    <script type="text/javascript">
+                $(document).ready(function () {
+                $('.postform').on('submit',function (para) {
+                    para.preventDefault();
+                    $.ajax({
+                url:"processpost.php",
+                 type:"post",
+                 data:new FormData(this),
+                 contentType:false,
+                 cache:false,
+                 processData:false,
+                 beforeSend:function(){
+                  $('.showpxx').html("load...........................................................");
+                 },
+                 success:function(para2){
+                    $('.showppxx').html(para2);
+                 },
+                 error:function(){
+                    alert('error typing to processData');
+                 }
+
+                    })
+                });
+                })
+            </script>
+
+          <!------------------------------this form is voting like proces--------------------------------------------->
+            <form class="postform" enctype="multipart/form-data" action="processpost.php" method="post">
+                     <h1 class="showppxx">process vote</h1>
+                  <div class="showpp"></div>
+                <label class="fa fa-camera" for="cam"></label>
+                <input type="file" name="myfile" style=" display: none;" id="cam">
+                <input type="text" name="votename" placeholder="name">
+              <input type="submit" name="post" value="submit" style="width:40%; background:lightseagreen; font-family: inter; color: white;" class="dashboardds">
+            </form>
+
+
+
+
+
+
+<!------------------------------------------------------------------------processupdate----------------------------------------------------->
+
+                <form class="winnerform" enctype="multipart/form-data" action="winnerprocess.php" method="post">
+                     <h1 class="showppxx">winner update</h1>
+                  <div class="showpp"></div>
+                <label class="fa fa-camera" for="cam"></label>
+                <input type="file" name="myfile" style=" display: none;" id="cam">
+                <input type="text" name="winnername" placeholder="name">
+              <input type="submit" name="post" value="submit" style="width:40%; background:lightseagreen; font-family: inter; color: white;" class="dashboardds">
+            </form>
+        </div>
+        <!-------------------------------------------------------dash---------------------------------------------------->
+        <div class="dashboardd">
+               <div class="vote2">
+
+              <script type="text/javascript">
+                function swall() {
+                  $(document).ready(function () {
+                      $('.vote2').load('showallpost.php');
+                  })
+                }
+                swall();
+              </script>
+            </div>
+                   <div class="loadnesadmin">
+            <script type="text/javascript">
+                  $(document).ready(function () {
+                      $('.loadnesadmin').load('loadnews.php');
+                  })
+           
+               
+              </script>
+              
+         </div>
+        </div>
+        <!-------------------------------------------newsspost------------------------------------------------------>
+     <div class="newadim">
+         <form class="newsform" action="processnews.php" method="post"  enctype="multipart/form-data">
+            <label class="fa fa-camera" for="pc"></label>
+            <input type="file" name="myfiles" id="pc" style="display: none;">
+            <input type="text" name="postext" placeholder="post">
+            <input type="submit" name="postex" style="width:40%; background:lightseagreen; font-family: inter; color: white;" class="dashboardds">
+             
+         </form>
+     </div>
+    </section>
+    <div class="adimsidediv">
+    <span class="dashboardds">Dashboard</span>
+    <span class="postadim">Adminpost</span>
+     <span class="anews">Newspost</span>
+    </div>
+</div>
+<!---------------------------------------------------------------homepage------------------------------------------------------------->
+<div class="hommpage">
+    <section class="sec1">
+        <i class="fa fa-bars showsidediv"></i>
+        <h3>VoteMe</h3>
+    </section>
+
+    <section class="sec2">
+        <!-------------------------------------------------------vote----------------------------------------------------------------------------->
+        <div class="vote">
+            <div class="winerbig">
+           
+              <script type="text/javascript">
+               
+                  $(document).ready(function () {
+                      $('.winerbig').load('loadwinner.php');
+                  })
+           
+                
+              </script>
+            </div>
+ <h1> vote for your winner</h1>
+            <div class="vote2">
+
+              <script type="text/javascript">
+                function swall() {
+                  $(document).ready(function () {
+                      $('.vote2').load('showallpost.php');
+                  })
+                }
+                swall();
+              </script>
+            </div>
+
+        </div>
+
+<!-------------------------------------------------------------------new------------------------------------------------------------------>
+         <div class="news">
+            <script type="text/javascript">
+                  $(document).ready(function () {
+                      $('.news').load('loadnews.php');
+                  })
+           
+               
+              </script>
+         </div>
+          <div class="about">
+              <h1>About us</h1>
+
+              <div class="forimagetext2">
+   
+    <div>
+        <span>
+        <h2>Our Vision</h2>
+        <p>Voteme Services will be Nigeria’s voting platform.
+        </p>
+        </span>
+        <span>
+            <h2>Our Mission</h2>
+            <p>We are committed to relentlessly exceed voter’s expectation through innovative <a>technology solutions for voting</a></p>
+        </span>
+    </div>
+</div>
+<div class="fortextandlogo">
+        <div class="textldiv">
+            <div class="textldivimage"></div>
+            <div class="textldivtext1">
+                <span></span>
+              <h3 style="font-size: 26px;">INNOVATION</h3>
+            </div>
+            <div class="textldivtext2">
+                <p class="quality-text"style="font-size: 15px;">Innovation is deeply ingrained in our corporate culture, and has long been a voting force in the Voteme. We listen to voter and develop new voting  services that address individual needs.  creativity is celebrated and rewarded. Small and big ideas come from all levels of the company to achieve the highest levels of voter satisfaction.</p> </div>
+        </div>
+
+        <div class="textldiv" style="background-color:skyblue;">
+            <div class="textldivimage"></div>
+            <div class="textldivtext1">
+                
+            <h3 style="font-size:26px;">QUALITY</h3>
+            </div>
+            <div class="textldivtext2" style="  font-size: 15px;">
+                <p class="quality-text">We place high value on maintaining and enhancing quality in every facet of the organization. Improving processes, eliminating bottlenecks and increasing efficiency of daily operations is an on-going cycle in voteme.</p></div>
+        </div>
+
+
+
+
+        <div class="textldiv" style="background-color:rgb(162, 32, 32);">
+            <div class="textldivimage"></div>
+            <div class="textldivtext1">
+                <span></span>
+                <h3 style=" font-size: 26px;">PEOPLE</h3>
+            </div>
+            <div class="textldivtext2" style="  font-size: 15px;">
+<p class="quality-text">VoteMe Services, we believe that quality people can vote consistently excellent voting, and continuously innovate to vote. Our HR initiatives are deliberately designed to attract and maintain the best talents, while continuously nurturing and offering them opportunities to achieve and innovate.</p>
+            </div>
+        </div>
+        
+        
+
+    </div>
+
+          </div>
+           <div class="contact">
+               <section class="csec1">
+                    <div class="contactdiv">
+                        <h1>Countact us</h1>
+                        <div class="cdiv">
+                            <p><span style="font-family: inter;">Countact</span><br>
+                                  +23409019791849
+                                  <br>+23408143792442<br>
+                                  donnneyboi112@gmail.com
+                            </p>
+                            <p><span style="font-family: inter;">ADDRESS</span><br>
+                                  RIVER STATE
+                                  <br>port harcourt<br>
+                                 NTA ROAD 164A
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <div class="contactformdiv">
+                        <form class="contactform">
+                            <input type="text" name="name" placeholder="full name">
+                            <input type="text" name="email" placeholder="email">
+                            <textarea> write message</textarea>
+                            <input type="submit" name="">
+                            
+                        </form>
+                    </div>
+
+                </section>
+           </div>
+    </section>
+</div>
+		<!---------------------------------------------------------------sidediv---------------------------------------------->
+        <div class="sidediv">
+            <div class="sidehead">
+                <img src="img/47491243011404887691875309824istockphoto-1201144328-170667a.jpg">
+            </div>
+            <div class="sidebody">
+                <span class="v">vote</span>
+                <span class="n">news</span>
+                <span class="a">about</span>
+                <span class="c">contact us</span>
+            </div>
+        </div>                              
+	</main>
+<script type="text/javascript" src="java/java.js"></script>
+</body>
+</html>
